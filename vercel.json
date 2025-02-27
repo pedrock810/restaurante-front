@@ -1,0 +1,16 @@
+{
+  "routes": [
+    {
+      "src": "/admin/dishes/edit/.*",
+      "dest": "/admin/dishes/edit",
+      "methods": ["GET"],
+      "headers": { "cache-control": "no-store" }
+    },
+    {
+      "src": "/admin/categories/edit/.*",
+      "dest": "/admin/categories/edit",
+      "methods": ["GET"],
+      "headers": { "cache-control": "no-store" }
+    }
+  ]
+}
