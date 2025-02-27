@@ -1,0 +1,25 @@
+<h2>Lista de Pratos</h2>
+<button routerLink="/admin/dishes/new">Adicionar Novo Prato</button>
+<table>
+  <thead>
+    <tr>
+      <th>Nome</th>
+      <th>Descrição</th>
+      <th>Preço</th>
+      <th>Categoria</th>
+      <th>Ações</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let dish of dishes">
+      <td>{{ dish.name }}</td>
+      <td>{{ dish.description }}</td>
+      <td>{{ dish.price }}</td>
+      <td>{{ dish.category?.name }}</td>
+      <td>
+        <button [routerLink]="['/admin/dishes/edit', dish.id]">Editar</button>
+        <button (click)="deleteDish(dish.id)">Excluir</button>
+      </td>
+    </tr>
+  </tbody>
+</table>

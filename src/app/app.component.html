@@ -1,0 +1,13 @@
+<header>
+  <h1>Meu Aplicativo</h1>
+  <div *ngIf="loggedInUser; else loginButton">
+    <span>Bem-vindo, {{ loggedInUser.name }}</span>
+    <button mat-button (click)="logout()">Logout</button>
+    <button *ngIf="loggedInUser.isAdmin" mat-button (click)="goToAdminPanel()">Painel Administrador</button>
+  </div>
+  <ng-template #loginButton>
+    <button mat-button (click)="openLoginDialog()">Login</button>
+  </ng-template>
+</header>
+
+<router-outlet></router-outlet>

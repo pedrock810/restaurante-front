@@ -1,0 +1,13 @@
+<h2>{{ isEditMode ? 'Editar Categoria' : 'Adicionar Nova Categoria' }}</h2>
+<form [formGroup]="categoryForm" (ngSubmit)="onSubmit()">
+  <div>
+    <label for="name">Nome:</label>
+    <input id="name" type="text" formControlName="name">
+  </div>
+  <div>
+    <label for="description">Descrição:</label>
+    <input id="description" type="text" formControlName="description">
+  </div>
+  <button type="submit">{{ isEditMode ? 'Atualizar' : 'Criar' }}</button>
+  <button type="button" (click)="router.navigate(['/admin/categories'])">Cancelar</button>
+</form>

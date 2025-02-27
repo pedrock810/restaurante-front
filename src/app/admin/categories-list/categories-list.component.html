@@ -1,0 +1,21 @@
+<h2>Lista de Categorias</h2>
+<button routerLink="/admin/categories/new">Adicionar Nova Categoria</button>
+<table>
+  <thead>
+    <tr>
+      <th>Nome</th>
+      <th>Descrição</th>
+      <th>Ações</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let category of categories">
+      <td>{{ category.name }}</td>
+      <td>{{ category.description }}</td>
+      <td>
+        <button [routerLink]="['/admin/categories/edit', category.id]">Editar</button>
+        <button (click)="deleteCategory(category.id)">Excluir</button>
+      </td>
+    </tr>
+  </tbody>
+</table>

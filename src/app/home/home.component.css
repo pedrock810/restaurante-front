@@ -1,0 +1,20 @@
+/* home/home.component.css */
+.dish-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.dish-card {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 16px;
+  width: 200px;
+  text-align: center;
+}
+
+.dish-image {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
