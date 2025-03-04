@@ -1,0 +1,16 @@
+<h2>Gerenciar Usuários</h2>
+<table>
+  <tr>
+    <th>Nome</th>
+    <th>Email</th>
+    <th>Ações</th>
+  </tr>
+  <tr *ngFor="let user of users">
+    <td>{{ user.name }}</td>
+    <td>{{ user.email }}</td>
+    <td>
+      <button [routerLink]="['/admin/users/edit', user.id]">Editar</button>
+      <button (click)="deleteUser(user.id)">Excluir</button>
+    </td>
+  </tr>
+</table>

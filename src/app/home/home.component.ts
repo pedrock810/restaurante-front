@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../auth.service';
-import { HttpClientModule } from '@angular/common/http'; // Importe o HttpClientModule
+import { CategoryService } from '../services/category.service';
+import { DishService } from '../services/dish.service'; // Importe o DishService
+import { HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-home',
@@ -11,22 +13,59 @@ import { HttpClientModule } from '@angular/common/http'; // Importe o HttpClient
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit {
-  recommendedDishes: any[] = []; // Array para armazenar os pratos recomendados
+  recommendedDishes: any[] = [];
+  categories: any[] = [];
+  dishes: any[] = []; // Array para armazenar todos os pratos
 
-  constructor(private authService: AuthService) {} // Injete o AuthService
+  constructor(
+    private categoryService: CategoryService,
+    private dishService: DishService, // Injete o DishService
+    private authService: AuthService
+  ) {}
 
   ngOnInit(): void {
+    this.loadCategories();
     this.loadRecommendedDishes();
   }
 
-  // Método para carregar pratos recomendados
+  loadCategories(): void {
+    this.categoryService.getCategories().subscribe(
+      (categories) => {
+        this.categories = categories;
+        // Após carregar as categorias, carregue os pratos
+        this.loadDishes();
+      },
+      (error) => {
+        console.error('Erro ao carregar categorias:', error);
+      }
+    );
+  }
+
+  loadDishes(): void {
+    this.dishService.getDishes().subscribe(
+      (dishes) => {
+        this.dishes = dishes;
+        // Associe os pratos às categorias
+        this.associateDishesToCategories();
+      },
+      (error) => {
+        console.error('Erro ao carregar pratos:', error);
+      }
+    );
+  }
+
+  associateDishesToCategories(): void {
+    this.categories.forEach((category) => {
+      // Filtra os pratos que pertencem à categoria atual
+      category.dishes = this.dishes.filter((dish) => dish.categoryId === category.id);
+    });
+  }
+
   loadRecommendedDishes(): void {
     this.authService.getDishes().subscribe(
       (dishes) => {
         if (dishes.length > 0) {
-          // Randomiza a lista de pratos
           const shuffledDishes = this.shuffleArray(dishes);
-          // Seleciona no máximo 5 pratos
           this.recommendedDishes = shuffledDishes.slice(0, 5);
         }
       },
@@ -36,7 +75,6 @@ export class HomeComponent implements OnInit {
     );
   }
 
-  // Método para randomizar um array
   shuffleArray(array: any[]): any[] {
     for (let i = array.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));

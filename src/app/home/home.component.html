@@ -1,7 +1,7 @@
-<!-- home/home.component.html -->
 <h1>Bem-vindo à Página Inicial</h1>
 <p>Esta é a página inicial do seu aplicativo.</p>
 
+<!-- Seção de Pratos Recomendados -->
 <div *ngIf="recommendedDishes.length > 0">
   <h2>Pratos Recomendados</h2>
   <div class="dish-list">
@@ -16,4 +16,28 @@
 
 <div *ngIf="recommendedDishes.length === 0">
   <p>Nenhum prato disponível no momento.</p>
+</div>
+
+<!-- Seções separadas para cada categoria -->
+<div *ngFor="let category of categories">
+  <h2>{{ category.name }}</h2>
+  <p>{{ category.description }}</p>
+
+  <div *ngIf="category.dishes?.length > 0">
+    <div class="dish-list">
+      <div *ngFor="let dish of category.dishes" class="dish-card">
+        <img [src]="dish.photo" alt="{{ dish.name }}" class="dish-image" />
+        <h3>{{ dish.name }}</h3>
+        <p>{{ dish.description }}</p>
+        <p><strong>Preço:</strong> {{ dish.price | currency:'EUR' }}</p>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="category.dishes?.length === 0">
+    <p>Sem pratos disponíveis nesta categoria.</p>
+  </div>
+</div>
+
+<div *ngIf="categories.length === 0">
+  <p>Nenhuma categoria disponível no momento.</p>
 </div>

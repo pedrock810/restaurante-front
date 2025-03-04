@@ -10,13 +10,16 @@ export class CategoryService {
 
   constructor(private http: HttpClient) {}
 
-  // Método para listar todas as categorias
   getCategories(): Observable<any> {
     return this.http.get(this.apiUrl);
   }
 
+  getDishesByCategory(categoryId: string): Observable<any> {
+    return this.http.get(`${this.apiUrl}/${categoryId}/dishes`);
+  }
+
   createCategory(category: { name: string; description?: string }): Observable<any> {
-    const token = localStorage.getItem('token'); // Pegando o token do localStorage
+    const token = localStorage.getItem('token');
     if (!token) {
       console.error('Token não encontrado!');
       return new Observable(observer => {
@@ -32,9 +35,8 @@ export class CategoryService {
     });
   }
 
-  // Método para atualizar uma categoria
   updateCategory(id: string, category: { name: string; description?: string }): Observable<any> {
-    const token = localStorage.getItem('token'); // Pegando o token armazenado
+    const token = localStorage.getItem('token');
     if (!token) {
       console.error('Token não encontrado!');
       return new Observable(observer => {
@@ -50,7 +52,6 @@ export class CategoryService {
     });
   }  
 
-  // Método para deletar uma categoria
   deleteCategory(id: string): Observable<any> {
     return this.http.delete(`${this.apiUrl}/${id}`);
   }

@@ -33,6 +33,11 @@ export class AppComponent implements OnInit {
     });
   }
 
+  // Método para redirecionar para a página /home
+  goToHome() {
+    this.router.navigate(['/home']);
+  }
+
   logout() {
     this.authService.logout(); // Faz logout
   }

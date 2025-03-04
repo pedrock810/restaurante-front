@@ -1,0 +1,13 @@
+<h2>{{ userId ? 'Editar Usuário' : 'Novo Usuário' }}</h2>
+<form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+  <label for="name">Nome</label>
+  <input id="name" formControlName="name" type="text" />
+
+  <label for="email">Email</label>
+  <input id="email" formControlName="email" type="email" />
+
+  <label for="password">Senha (opcional)</label>
+  <input id="password" formControlName="password" type="password" />
+
+  <button type="submit">Salvar</button>
+</form>

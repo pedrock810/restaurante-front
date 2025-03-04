@@ -3,6 +3,8 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { HomeComponent } from './home/home.component';
 import { AdminPanelComponent } from './admin-panel/admin-panel.component'; // Importe o AdminPanelComponent
+import { UserListComponent } from './admin/user-list/user-list.component';
+import { UserFormComponent } from './admin/user-form/user-form.component';
 import { DishesListComponent } from './admin/dishes-list/dishes-list.component';
 import { DishFormComponent } from './admin/dish-form/dish-form.component';
 import { CategoriesListComponent } from './admin/categories-list/categories-list.component';
@@ -14,6 +16,8 @@ export const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' }, // Redireciona para a página inicial
   { path: 'home', component: HomeComponent }, // Rota para a página inicial
   { path: 'admin', component: AdminPanelComponent, children: [
+    { path: 'users', component: UserListComponent },
+    { path: 'users/edit/:id', component: UserFormComponent },
     { path: 'dishes', component: DishesListComponent }, // Rota para listar pratos
     { path: 'dishes/new', component: DishFormComponent }, // Rota para criar um novo prato
     { path: 'dishes/edit/:id', component: DishFormComponent }, // Rota para editar um prato

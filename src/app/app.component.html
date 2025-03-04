@@ -1,5 +1,7 @@
 <header>
-  <h1>Meu Aplicativo</h1>
+  <h1>
+    <span (click)="goToHome()" style="cursor: pointer;">Meu Aplicativo</span>
+  </h1>
   <div *ngIf="loggedInUser; else loginButton">
     <span>Bem-vindo, {{ loggedInUser.name }}</span>
     <button mat-button (click)="logout()">Logout</button>
