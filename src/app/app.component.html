@@ -1,7 +1,22 @@
 <header>
-  <h1>
-    <span (click)="goToHome()" style="cursor: pointer;">Meu Aplicativo</span>
-  </h1>
+  <div class="header-content">
+    <h1>
+      <span (click)="goToHome()" style="cursor: pointer;">Meu Aplicativo</span>
+    </h1>
+    <div class="categories-dropdown">
+      <button (click)="toggleCategories()">Categorias</button>
+      <div *ngIf="showCategories" class="categories-menu">
+        <div class="categories-columns">
+          <div class="categories-column" *ngFor="let column of categoryColumns">
+            <div *ngFor="let category of column" (click)="filterDishesByCategory(category.id)" class="category-item">
+              {{ category.name }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <div *ngIf="loggedInUser; else loginButton">
     <span>Bem-vindo, {{ loggedInUser.name }}</span>
     <button mat-button (click)="logout()">Logout</button>

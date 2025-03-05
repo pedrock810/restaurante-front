@@ -15,6 +15,7 @@ export const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: '', redirectTo: '/home', pathMatch: 'full' }, // Redireciona para a página inicial
   { path: 'home', component: HomeComponent }, // Rota para a página inicial
+  
   { path: 'admin', component: AdminPanelComponent, children: [
     { path: 'users', component: UserListComponent },
     { path: 'users/edit/:id', component: UserFormComponent },
