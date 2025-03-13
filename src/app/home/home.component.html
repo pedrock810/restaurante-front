@@ -11,7 +11,7 @@
 <div *ngIf="!isFiltered && recommendedDishes.length > 0">
   <h2>Pratos Recomendados</h2>
   <div class="dish-list">
-    <div *ngFor="let dish of recommendedDishes" class="dish-card">
+    <div *ngFor="let dish of filteredDishes" class="dish-card" [routerLink]="['/dish', dish.id]">
       <img [src]="dish.photo" alt="{{ dish.name }}" class="dish-image" />
       <h3>{{ dish.name }}</h3>
       <p>{{ dish.description }}</p>

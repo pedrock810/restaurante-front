@@ -1,0 +1,32 @@
+<div *ngIf="dish" class="dish-detail-container">
+  <div class="dish-image-container">
+    <img [src]="dish.photo" alt="{{ dish.name }}" class="dish-detail-image" />
+  </div>
+  <div class="dish-info">
+    <h1>{{ dish.name }}</h1>
+    <p class="dish-description">{{ dish.description }}</p>
+    <p class="dish-price"><strong>Preço:</strong> {{ dish.price | currency:'EUR' }}</p>
+    <button (click)="addToCart()" class="add-to-cart-button">Adicionar ao Carrinho</button>
+  </div>
+</div>
+
+<div *ngIf="!dish">
+  <p>Carregando detalhes do prato...</p>
+</div>
+
+<!-- Seção "Outros pratos da categoria" -->
+<div *ngIf="categoryDishes.length > 0" class="category-dishes-section">
+  <h2>Outros pratos da categoria {{ dish.categoryName }}</h2>
+  <div class="dish-list">
+    <div *ngFor="let dish of categoryDishes" class="dish-card" [routerLink]="['/dish', dish.id]">
+      <img [src]="dish.photo" alt="{{ dish.name }}" class="dish-image" />
+      <h3>{{ dish.name }}</h3>
+      <p>{{ dish.description }}</p>
+      <p><strong>Preço:</strong> {{ dish.price | currency:'EUR' }}</p>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="categoryDishes.length === 0 && dish">
+  <p>Nenhum outro prato disponível nesta categoria.</p>
+</div>

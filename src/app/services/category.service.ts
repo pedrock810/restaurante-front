@@ -14,6 +14,10 @@ export class CategoryService {
     return this.http.get(this.apiUrl);
   }
 
+  getCategoryById(id: string): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/${id}`);
+  }
+
   getDishesByCategory(categoryId: string): Observable<any> {
     return this.http.get(`${this.apiUrl}/${categoryId}/dishes`);
   }

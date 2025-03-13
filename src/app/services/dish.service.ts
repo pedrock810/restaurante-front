@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
+import { CategoryService } from './category.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, map, switchMap  } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -8,11 +9,28 @@ import { Observable } from 'rxjs';
 export class DishService {
   private apiUrl = 'https://restaurante-webapp-back.vercel.app/api/dishes';
 
-  constructor(private http: HttpClient) {}
+  constructor(
+    private http: HttpClient,
+    private categoryService: CategoryService
+  ) {}
 
   // Método para listar todos os pratos
   getDishes(): Observable<any> {
     return this.http.get(this.apiUrl);
+  }
+
+  getDishById(id: string): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/${id}`).pipe(
+      switchMap((dish: any) => {
+        // Busca o nome da categoria com base no categoryId
+        return this.categoryService.getCategoryById(dish.categoryId).pipe(
+          map((category: any) => {
+            dish.categoryName = category.name; // Adiciona o nome da categoria ao prato
+            return dish;
+          })
+        );
+      })
+    );
   }
 
   // Método para criar um novo prato
