@@ -49,4 +49,11 @@ export class RegisterComponent {
   closeDialog() {
     this.dialogRef.close(); // Fecha o modal de registro manualmente
   }
+
+  openRegisterDialog() {
+    this.dialogRef.close(); // Fecha o modal de login
+    this.dialog.open(LoginComponent, {
+      width: '300px', // Abre o modal de registro
+    });
+  }
 }

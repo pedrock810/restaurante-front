@@ -1,13 +1,63 @@
+/* Estilo do título secundário */
 h2 {
   text-align: center;
+  font-size: 1.5rem; /* Tamanho padrão para dispositivos móveis */
+  margin-bottom: 20px;
 }
 
+/* Estilo do formulário */
 form {
   display: flex;
   flex-direction: column;
   gap: 10px;
+  max-width: 400px; /* Largura máxima para formulários */
+  margin: 0 auto; /* Centraliza o formulário */
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #f9f9f9;
 }
 
+/* Estilo dos botões */
 button {
   margin-top: 0px;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+/* Media Queries para responsividade */
+@media (min-width: 600px) {
+  h2 {
+    font-size: 2rem; /* Tamanho maior para tablets e desktops */
+  }
+
+  form {
+    max-width: 600px; /* Largura maior para tablets e desktops */
+    padding: 30px;
+  }
+
+  button {
+    font-size: 18px; /* Tamanho maior para tablets e desktops */
+    padding: 12px 24px;
+  }
+}
+
+@media (min-width: 900px) {
+  h2 {
+    font-size: 2.5rem; /* Tamanho maior para desktops */
+  }
+
+  form {
+    max-width: 800px; /* Largura maior para desktops */
+  }
 }

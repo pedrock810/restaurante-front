@@ -2,15 +2,19 @@
 .dish-list {
   display: flex;
   flex-wrap: wrap;
-  gap: 20px;
+  gap: 10px; /* Espaçamento entre os cards */
+  justify-content: flex-start; /* Alinha os cards à esquerda */
+  padding: 10px; /* Espaçamento interno */
 }
 
 .dish-card {
   border: 1px solid #ccc;
   border-radius: 8px;
   padding: 16px;
-  width: 200px;
+  width: calc(50% - 10px); /* 2 cards por linha em dispositivos móveis */
   text-align: center;
+  box-sizing: border-box; /* Garante que o padding não aumente o tamanho do card */
+  cursor: pointer;
 }
 
 .dish-image {
@@ -23,20 +27,23 @@
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
+  justify-content: center; /* Centraliza os cards */
 }
 
 .category-card {
   border: 1px solid #ccc;
   border-radius: 8px;
   padding: 16px;
-  width: 200px;
+  width: 100%; /* Largura padrão para mobile */
+  max-width: 200px; /* Largura máxima para desktop */
   text-align: center;
+  box-sizing: border-box; /* Garante que o padding não aumente o tamanho do card */
 }
 
 /* Parte das fotos */
 /* Contêiner do carrossel para centralizar e limitar a largura */
 .carousel-container {
-  max-width: 80%; /* Ajuste a largura máxima conforme necessário */
+  max-width: 90%; /* Ajuste a largura máxima conforme necessário */
   margin: 0 auto; /* Centraliza o carrossel na página */
   padding: 20px 0; /* Espaçamento vertical */
 }
@@ -46,7 +53,7 @@
   position: relative;
   overflow: hidden;
   width: 100%;
-  height: 600px; /* Aumente a altura para imagens maiores */
+  height: 300px; /* Altura inicial para mobile */
   border-radius: 10px; /* Bordas arredondadas */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra para destaque */
 }
@@ -84,4 +91,35 @@
   padding: 10px 20px;
   border-radius: 5px;
   font-size: 16px;
+}
+
+/* Media Queries para responsividade */
+@media (min-width: 600px) {
+  .dish-card, .category-card {
+    width: calc(33.333% - 20px); /* 2 cards por linha em tablets */
+  }
+
+  .carousel {
+    height: 400px; /* Aumenta a altura do carrossel para tablets */
+  }
+}
+
+@media (min-width: 900px) {
+  .dish-card, .category-card {
+    width: calc(25% - 20px); /* 3 cards por linha em desktops */
+  }
+
+  .carousel {
+    height: 500px; /* Aumenta a altura do carrossel para desktops */
+  }
+}
+
+@media (min-width: 1200px) {
+  .dish-card, .category-card {
+    width: calc(20% - 20px); /* 4 cards por linha em telas maiores */
+  }
+
+  .carousel {
+    height: 600px; /* Aumenta a altura do carrossel para telas grandes */
+  }
 }

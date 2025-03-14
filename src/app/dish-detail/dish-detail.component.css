@@ -1,26 +1,32 @@
+/* Estilo do contêiner principal */
 .dish-detail-container {
   display: flex;
+  flex-direction: column; /* Coluna para dispositivos móveis */
   gap: 20px;
   padding: 20px;
-  max-width: 800px;
+  max-width: 1200px; /* Largura máxima para desktops */
   margin: 0 auto;
 }
 
+/* Estilo da imagem do prato */
 .dish-image-container {
   flex: 1;
+  text-align: center; /* Centraliza a imagem */
 }
 
 .dish-detail-image {
   width: 100%;
-  max-width: 400px;
+  max-width: 400px; /* Limita o tamanho da imagem */
   border-radius: 8px;
 }
 
+/* Estilo das informações do prato */
 .dish-info {
   flex: 1;
   display: flex;
   flex-direction: column;
   gap: 10px;
+  text-align: center; /* Centraliza o texto */
 }
 
 .dish-description {
@@ -34,6 +40,7 @@
   font-weight: bold;
 }
 
+/* Estilo do botão "Adicionar ao Carrinho" */
 .add-to-cart-button {
   background-color: #007bff;
   color: white;
@@ -43,32 +50,38 @@
   cursor: pointer;
   font-size: 16px;
   margin-top: 20px;
+  width: 100%; /* Botão ocupa toda a largura em dispositivos móveis */
+  max-width: 200px; /* Largura máxima para desktops */
+  align-self: center; /* Centraliza o botão */
 }
 
 .add-to-cart-button:hover {
   background-color: #0056b3;
 }
 
+/* Estilo da seção "Outros pratos da categoria" */
 .category-dishes-section {
   margin-top: 40px;
   padding: 20px;
-  max-width: 1200px;
+  max-width: 1200px; /* Largura máxima para desktops */
   margin: 0 auto;
 }
 
 .dish-list {
   display: flex;
   flex-wrap: wrap;
-  gap: 20px;
+  gap: 10px; /* Espaçamento menor para dispositivos móveis */
+  justify-content: center; /* Centraliza os cards */
 }
 
 .dish-card {
   border: 1px solid #ccc;
   border-radius: 8px;
   padding: 10px;
-  width: 200px;
+  width: calc(50% - 10px); /* 2 cards por linha em dispositivos móveis */
   text-align: center;
   cursor: pointer;
+  box-sizing: border-box; /* Garante que o padding não aumente o tamanho do card */
 }
 
 .dish-card:hover {
@@ -79,4 +92,35 @@
   width: 100%;
   height: auto;
   border-radius: 8px;
+}
+
+/* Media Queries para responsividade */
+@media (min-width: 600px) {
+  .dish-detail-container {
+    flex-direction: row; /* Linha para tablets e desktops */
+  }
+
+  .dish-info {
+    text-align: left; /* Alinha o texto à esquerda */
+  }
+
+  .add-to-cart-button {
+    width: auto; /* Largura automática para tablets e desktops */
+  }
+
+  .dish-card {
+    width: calc(33.333% - 20px); /* 3 cards por linha em tablets */
+  }
+}
+
+@media (min-width: 900px) {
+  .dish-card {
+    width: calc(25% - 20px); /* 4 cards por linha em desktops */
+  }
+}
+
+@media (min-width: 1200px) {
+  .dish-card {
+    width: calc(20% - 20px); /* 5 cards por linha em telas maiores */
+  }
 }

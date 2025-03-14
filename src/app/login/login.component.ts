@@ -58,10 +58,6 @@ export class LoginComponent {
     }
   }
 
-  closeDialog() {
-    this.dialogRef.close(); // Fecha o modal de login manualmente
-  }
-
   openRegisterDialog() {
     this.dialogRef.close(); // Fecha o modal de login
     this.dialog.open(RegisterComponent, {
